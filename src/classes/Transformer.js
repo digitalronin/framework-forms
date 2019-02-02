@@ -14,8 +14,9 @@ class Transformer {
   transform(html) {
     const $h = $(`<div>${html}</div>`);
 
-    const input = $h.children()[1];
+    let input = $h.children()[1];
     const id = $(input).attr('id');
+    $(input).addClass('form-control');
 
     let label = $h.children()[0];
     $(label).attr('for', id);
