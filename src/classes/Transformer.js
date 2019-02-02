@@ -12,7 +12,7 @@ class Transformer {
   }
 
   transform(html) {
-    const $h = $(`<div>${html}</div>`);
+    let $h = $(`<div>${html}</div>`);
 
     let input = $h.children()[1];
     const id = $(input).attr('id');
