@@ -12,4 +12,12 @@ module.exports = {
     template: 'src/index.html',
     filename: 'home.html',
   })],
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader'],
+      },
+    ],
+  },
 };
