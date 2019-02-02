@@ -10,18 +10,17 @@ class HtmlPrettyPrinter {
   }
 
   process(str) {
-    var div = document.createElement('div');
+    const div = document.createElement('div');
     div.innerHTML = str.trim();
     return this.format(div, 0).innerHTML;
   }
 
   format(node, level) {
-    var indentBefore = new Array(level++ + 1).join('  '),
-      indentAfter  = new Array(level - 1).join('  '),
-      textNode;
+    const indentBefore = new Array(level++ + 1).join('  ');
+    const indentAfter = new Array(level - 1).join('  ');
+    let textNode;
 
-    for (var i = 0; i < node.children.length; i++) {
-
+    for (let i = 0; i < node.children.length; i++) {
       textNode = document.createTextNode('\n' + indentBefore);
       node.insertBefore(textNode, node.children[i]);
 
@@ -38,4 +37,3 @@ class HtmlPrettyPrinter {
 }
 
 export { HtmlPrettyPrinter };
-
