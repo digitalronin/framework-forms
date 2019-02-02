@@ -6,3 +6,6 @@ deploy:
 
 setup:
 	heroku create framework-forms
+
+watch:
+	find src | entr -d make build
