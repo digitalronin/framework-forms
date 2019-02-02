@@ -14,13 +14,13 @@ class Transformer {
   }
 
   transform(html) {
-    let $h = $(`<div>${html}</div>`);
+    const $h = $(`<div>${html}</div>`);
 
-    let input = $h.children()[1];
+    const input = $h.children()[1];
     const id = $(input).attr('id');
     $(input).addClass('form-control');
 
-    let label = $h.children()[0];
+    const label = $h.children()[0];
     $(label).attr('for', id);
 
     $h.children().wrapAll('<div class="form-group">');
