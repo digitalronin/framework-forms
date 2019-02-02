@@ -14,6 +14,7 @@ module.exports = {
   })],
   module: {
     rules: [
+      { test: /\.html$/, use: ['html-loader?interpolate'] },
       { test: /\.css$/, use: ['style-loader', 'css-loader'] },
     ],
   },
