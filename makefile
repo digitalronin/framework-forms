@@ -1,4 +1,4 @@
-build:
+application.js: webpack.config.js src/* src/*/*
 	./node_modules/webpack/bin/webpack.js
 
 deploy:
@@ -8,4 +8,4 @@ setup:
 	heroku create framework-forms
 
 watch:
-	find src | entr -d make build
+	find src | entr -d make
