@@ -12,11 +12,13 @@ class Transformer {
   }
 
   transform(html) {
-    console.log('transform', html);
     const $h = $(`<div>${html}</div>`);
 
+    const input = $h.children()[1];
+    const id = $(input).attr('id');
+
     let label = $h.children()[0];
-    $(label).attr('for', 'wibble');
+    $(label).attr('for', id);
 
     return $h.html();
   }
