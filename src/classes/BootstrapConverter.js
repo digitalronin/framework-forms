@@ -6,12 +6,16 @@ class BootstrapConverter {
   convert(html) {
     const [$h, fragment] = this.getFragment(html);
 
-    $(fragment.input).addClass('form-control');
+    if (fragment.input !== null) {
+      if (fragment.input.type === 'checkbox') {
+        this.addCheckboxClasses($h, fragment);
+      } else {
+        this.addClasses($h, fragment);
+      }
 
-    const id = $(fragment.input).attr('id');
-    $(fragment.label).attr('for', id);
-
-    $h.children().wrapAll('<div class="form-group">');
+      const id = $(fragment.input).attr('id');
+      $(fragment.label).attr('for', id);
+    }
 
     return $h.html();
   }
@@ -36,6 +40,18 @@ class BootstrapConverter {
 
     return [$h, fragment];
   }
+
+  addCheckboxClasses($h, fragment) {
+    $(fragment.input).addClass('form-check-input');
+    $(fragment.label).addClass('form-check-label');
+    $h.children().wrapAll('<div class="form-group form-check">');
+  }
+
+  addClasses($h, fragment) {
+    $(fragment.input).addClass('form-control');
+    $h.children().wrapAll('<div class="form-group">');
+  }
+
 }
 
 export { BootstrapConverter };

@@ -9,6 +9,10 @@ const exampleHtml = `
 
 <label>Password</label>
 <input id="password" type="password" placeholder="Password" />
+
+<input id="mybool" type="checkbox" />
+<label>Check this</label>
+
 `;
 
 const transform = () => {
