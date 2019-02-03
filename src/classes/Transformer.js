@@ -14,7 +14,7 @@ class Transformer {
       rtn += bc.convert(chunk);
     });
 
-    return this.prettify(rtn);
+    return new HtmlPrettyPrinter(rtn).prettify();
   }
 
   // split html into chunks, according to blank
@@ -22,13 +22,9 @@ class Transformer {
   chunks(html) {
     // https://stackoverflow.com/a/42559116/794111
     return html
-        .replace(/\n\r/g, "\n")
-        .replace(/\r/g, "\n")
-        .split(/\n{2,}/g);
-  }
-
-  prettify(html) {
-    return new HtmlPrettyPrinter(html).prettify();
+      .replace(/\n\r/g, "\n")
+      .replace(/\r/g, "\n")
+      .split(/\n{2,}/g);
   }
 }
 
