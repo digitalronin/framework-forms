@@ -8,10 +8,10 @@ class Transformer {
     let rtn = "";
 
     this.chunks(html).map((chunk) => {
-      rtn += this.transformLabelInputPair(chunk) + "\n\n";
+      rtn += this.transformLabelInputPair(chunk);
     });
 
-    return rtn;
+    return this.prettify(rtn);
   }
 
   // split html into chunks, according to blank
@@ -39,9 +39,7 @@ class Transformer {
 
     $h.children().wrapAll('<div class="form-group">');
 
-    const transformed = $h.html();
-
-    return this.prettify(transformed);
+    return $h.html();
   }
 
   prettify(html) {
