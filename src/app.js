@@ -14,7 +14,7 @@ const exampleHtml = `
 const transform = () => {
   const input = $('#plainFormTextarea').val();
   const transformed = transformer.transform(input);
-  $('#transformedFormTextarea').val(transformed);
+  $('#bootstrapHtmlTextarea').val(transformed);
 };
 
 $().ready(() => {
