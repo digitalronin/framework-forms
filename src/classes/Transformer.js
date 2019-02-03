@@ -1,14 +1,17 @@
 import { HtmlPrettyPrinter } from './HtmlPrettyPrinter';
+import { BootstrapConverter } from './BootstrapConverter';
 
 // Transform plain form fields HTML into its bootstrap
 // equivalent, by adding form-group tags, etc.
 class Transformer {
 
   transform(html) {
+    const bc = new BootstrapConverter();
+
     let rtn = "";
 
     this.chunks(html).map((chunk) => {
-      rtn += this.transformLabelInputPair(chunk);
+      rtn += bc.convert(chunk);
     });
 
     return this.prettify(rtn);
@@ -22,24 +25,6 @@ class Transformer {
         .replace(/\n\r/g, "\n")
         .replace(/\r/g, "\n")
         .split(/\n{2,}/g);
-  }
-
-  // input: two lines of html - the first is a label, the second is an
-  // input tag
-  // output: The equivalent HTML for a bootstrap form-group
-  transformLabelInputPair(html) {
-    const $h = $(`<div>${html}</div>`);
-
-    const input = $h.children()[1];
-    const id = $(input).attr('id');
-    $(input).addClass('form-control');
-
-    const label = $h.children()[0];
-    $(label).attr('for', id);
-
-    $h.children().wrapAll('<div class="form-group">');
-
-    return $h.html();
   }
 
   prettify(html) {
