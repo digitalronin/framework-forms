@@ -4,24 +4,37 @@ class BootstrapConverter {
   // input tag
   // output: The equivalent HTML for a bootstrap form-group
   convert(html) {
-    const $h = $(`<div>${html}</div>`);
+    const [$h, fragment] = this.getFragment(html);
 
-    const fragment = {
-      'label': null,
-      'input': null,
-    };
+    $(fragment.input).addClass('form-control');
 
-    fragment['input'] = $h.children()[1];
-    fragment['label'] = $h.children()[0];
-
-    const id = $(fragment['input']).attr('id');
-    $(fragment['input']).addClass('form-control');
-
-    $(fragment['label']).attr('for', id);
+    const id = $(fragment.input).attr('id');
+    $(fragment.label).attr('for', id);
 
     $h.children().wrapAll('<div class="form-group">');
 
     return $h.html();
+  }
+
+  getFragment(html) {
+    const fragment = {
+      label: null,
+      input: null,
+    };
+
+    const $h = $(`<div>${html}</div>`);
+
+    $h.children().map((index, el) => {
+      switch (el.type) {
+        case undefined:
+          fragment.label = el;
+          break;
+        default:
+          fragment.input = el;
+      }
+    });
+
+    return [$h, fragment];
   }
 }
 
