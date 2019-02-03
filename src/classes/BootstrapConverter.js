@@ -6,12 +6,18 @@ class BootstrapConverter {
   convert(html) {
     const $h = $(`<div>${html}</div>`);
 
-    const input = $h.children()[1];
-    const id = $(input).attr('id');
-    $(input).addClass('form-control');
+    const fragment = {
+      'label': null,
+      'input': null,
+    };
 
-    const label = $h.children()[0];
-    $(label).attr('for', id);
+    fragment['input'] = $h.children()[1];
+    fragment['label'] = $h.children()[0];
+
+    const id = $(fragment['input']).attr('id');
+    $(fragment['input']).addClass('form-control');
+
+    $(fragment['label']).attr('for', id);
 
     $h.children().wrapAll('<div class="form-group">');
 
